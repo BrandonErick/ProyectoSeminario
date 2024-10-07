@@ -1,0 +1,82 @@
+<h1 style="text-align: center; margin-bottom: 20px;">TechSolutions</h1>
+<%= link_to 'Ir al Dashboard', dashboard_path, class: 'btn-create' %>
+
+
+<style>
+  body {
+    background-color: #f0f8ff; /* Color de fondo claro para el contraste */
+    background-image: url('<%= asset_path("warehouse-blue-seamless-pattern-or-inventory-background-vector.jpg") %>'); /* Ruta a la imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen de fondo */
+  }
+
+  .table-container {
+    width: 80%; /* Ancho de la tabla */
+    margin: 20px auto; /* Centra la tabla en la página */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
+    padding: 20px; /* Espaciado alrededor de la tabla */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto de elevación */
+  }
+
+  table {
+    width: 100%; /* Ancho completo dentro del contenedor */
+    border-collapse: collapse; /* Colapsa bordes para una apariencia más limpia */
+  }
+
+  th, td {
+    border: 2px solid #007BFF; /* Bordes azules */
+    padding: 10px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto */
+    font-weight: bold; /* Texto en negrita */
+  }
+
+  th {
+    background-color: #00BFFF; /* Color de fondo azul celeste para las cabeceras */
+    color: white; /* Color de texto en blanco */
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+  }
+
+  tr:hover {
+    background-color: #e0f7fa; /* Color al pasar el mouse */
+  }
+
+  .btn-create {
+    background-color: #00BFFF; /* Color azul celeste */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Elimina el subrayado en el link */
+    display: inline-block; /* Cambia a bloque en línea para que se alinee a la izquierda */
+    margin-bottom: 10px; /* Espacio inferior para separación */
+  }
+
+  .btn-create:hover {
+    background-color: #00008B; /* Color azul marino al hacer hover */
+  }
+</style>
+
+<div class="table-container">
+  <%= link_to 'Nueva Categoria', new_category_path, class: 'btn-create', style: 'font-weight: bold;' %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= category.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

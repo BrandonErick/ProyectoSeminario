@@ -1,0 +1,58 @@
+<h1>Dashboard</h1>
+
+<div class="dashboard-container">
+  <div class="module" onclick="window.location.href='<%= categories_path %>'">
+    <h2>Categorías</h2>
+    <p>Haz clic aquí para ver las categorías.</p>
+  </div>
+
+  <div class="module" onclick="window.location.href='<%= inventory_transactions_path %>'">
+    <h2>Transacciones de Inventario</h2>
+    <p>Haz clic aquí para ver las transacciones de inventario.</p>
+  </div>
+
+  <div class="module" onclick="window.location.href='<%= products_path %>'">
+    <h2>Productos</h2>
+    <p>Haz clic aquí para ver los productos.</p>
+  </div>
+
+  <div class="module" onclick="window.location.href='<%= suppliers_path %>'">
+    <h2>Proveedores</h2>
+    <p>Haz clic aquí para ver los proveedores.</p>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 20px; /* Espacio entre los módulos */
+    padding: 20px;
+  }
+
+  .module {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 40px; /* Aumenta el padding para que se vea más como un botón */
+    text-align: center;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el módulo */
+    transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .module:hover {
+    background-color: #f0f0f0; /* Color de fondo en hover */
+    transform: scale(1.02); /* Efecto de crecimiento al pasar el mouse */
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+</style>

@@ -1,58 +1,163 @@
-<h1>Dashboard</h1>
+<h1>TechSolutions</h1>
+
+<div class="logout-container">
+  <%= button_to 'Cerrar sesión', logout_path, method: :delete, class: 'logout-button' %>
+</div>
 
 <div class="dashboard-container">
-  <div class="module" onclick="window.location.href='<%= categories_path %>'">
+  <div class="module categories" onclick="window.location.href='<%= categories_path %>'">
     <h2>Categorías</h2>
     <p>Haz clic aquí para ver las categorías.</p>
   </div>
 
-  <div class="module" onclick="window.location.href='<%= inventory_transactions_path %>'">
-    <h2>Transacciones de Inventario</h2>
-    <p>Haz clic aquí para ver las transacciones de inventario.</p>
+  <div class="module transactions" onclick="window.location.href='<%= inventory_transactions_path %>'">
+    <h2>Transacciones</h2>
+    <p>Haz clic aquí para ver las transacciones.</p>
   </div>
 
-  <div class="module" onclick="window.location.href='<%= products_path %>'">
+  <div class="module products" onclick="window.location.href='<%= products_path %>'">
     <h2>Productos</h2>
     <p>Haz clic aquí para ver los productos.</p>
   </div>
 
-  <div class="module" onclick="window.location.href='<%= suppliers_path %>'">
+  <div class="module suppliers" onclick="window.location.href='<%= suppliers_path %>'">
     <h2>Proveedores</h2>
     <p>Haz clic aquí para ver los proveedores.</p>
   </div>
 </div>
 
 <style>
-  body {
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-  }
+}
 
-  .dashboard-container {
+.logout-container {
+    position: absolute;
+    top: 20px;
+    right: 20px; /* Coloca el botón de cerrar sesión en la esquina superior derecha */
+    z-index: 100; /* Asegúrate de que el botón esté por encima de otros elementos */
+}
+
+.logout-button {
+    background-color: #f44336; /* Rojo para indicar cierre de sesión */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold; /* Negrita */
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Rojo más oscuro al pasar el mouse */
+}
+
+.dashboard-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-    gap: 20px; /* Espacio entre los módulos */
-    padding: 20px;
-  }
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+    max-width: 900px; 
+    margin: 40px auto; 
+}
 
-  .module {
+.module {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 2px solid black; 
     border-radius: 8px;
-    padding: 40px; /* Aumenta el padding para que se vea más como un botón */
     text-align: center;
-    cursor: pointer; /* Cambia el cursor al pasar sobre el módulo */
-    transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+    min-width: 300px; 
+    height: 200px; 
+    position: relative;
+    overflow: hidden; 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+}
 
-  .module:hover {
-    background-color: #f0f0f0; /* Color de fondo en hover */
-    transform: scale(1.02); /* Efecto de crecimiento al pasar el mouse */
-  }
+.module:hover::before {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente al pasar el mouse */
+}
 
-  h2 {
-    margin-bottom: 10px;
-  }
+h2, p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 
+                 0 0 10px rgba(255, 255, 255, 0.8); 
+}
+
+.module h2 {
+    margin: 10px 0; /* Agrega margen en la parte superior e inferior */
+}
+
+.module p {
+    margin: 0; /* Elimina márgenes para el párrafo */
+}
+
+/* Fondo semi-transparente detrás del texto */
+.module::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Sin fondo inicial */
+    z-index: 0; /* Asegúrate de que el fondo esté detrás del texto */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+/* Asegurarse de que el texto esté por encima del fondo */
+.module h2, .module p {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-weight: bold;     /* Color de texto blanco para los h2 */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos específicos para los módulos con imágenes de fondo */
+.categories {
+    background-image: url('<%= asset_path('11000448.png') %>');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 20px;
+}
+
+.transactions {
+    background-image: url('<%= asset_path('1458235.png') %>');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 20px;
+}
+
+.products {
+    background-image: url('<%= asset_path('5759286.png') %>');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 20px;
+}
+
+.suppliers {
+    background-image: url('<%= asset_path('imagen2.png') %>');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 20px;
+}
 </style>

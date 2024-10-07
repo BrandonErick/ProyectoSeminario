@@ -1,19 +1,99 @@
-<h1>Iniciar Sesión</h1>
 
-<%= form_with(url: login_path, local: true) do |form| %>
-  <div>
-    <%= form.label :username, "Nombre de usuario" %>
-    <%= form.text_field :username, required: true %>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hace que el body ocupe toda la altura de la pantalla */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Fondo azul claro */
+}
+
+.login-container {
+    display: flex;
+    width: 100%; /* Ocupa el 100% del ancho */
+    height: 100%; /* Ocupa el 100% de la altura */
+}
+
+.left-column {
+    flex: 1; /* Ocupa la mitad del contenedor */
+    background-color: #003366; /* Azul marino */
+    color: white; /* Texto blanco */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+}
+
+.right-column {
+    flex: 1; /* Ocupa la mitad del contenedor */
+    background-color: #e0f7fa; /* Fondo azul claro */
+    padding: 20px;
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    flex-direction: column; /* Colocamos los elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espacio entre los campos del formulario */
+    width: 100%; /* Hace que el grupo del formulario ocupe todo el ancho */
+}
+
+.input-field {
+    width: 100%; /* Hace que el campo de entrada ocupe todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #007bff; /* Azul profesional */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold; /* Negrita */
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+.back-link {
+    display: block;
+    margin-top: 15px;
+    color: #007bff; /* Color del enlace */
+    text-align: center; /* Centrar el enlace */
+}
+</style>
+
+<div class="login-container">
+  <div class="left-column">
+    <h2>BIENVENIDO A TECHSOLUTIONS</h2>
+    <p>Por favor, ingresa tus datos para continuar.</p>
   </div>
 
-  <div>
-    <%= form.label :password, "Contraseña" %>
-    <%= form.password_field :password, required: true %>
-  </div>
+  <div class="right-column">
+    <%= form_with(url: login_path, local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label :username, "Nombre de usuario" %>
+        <%= form.text_field :username, required: true, class: "input-field" %>
+      </div>
 
-  <div>
-    <%= form.submit "Iniciar Sesión" %>
-  </div>
-<% end %>
+      <div class="form-group">
+        <%= form.label :password, "Contraseña" %>
+        <%= form.password_field :password, required: true, class: "input-field" %>
+      </div>
 
-<%= link_to 'Volver', root_path %>
+      <div>
+        <%= form.submit "Iniciar Sesión", class: "submit-button" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

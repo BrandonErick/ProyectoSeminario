@@ -25,8 +25,8 @@ class LoginController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    redirect_to login_path
+    session[:user_id] = nil    # Eliminar la sesión actual del usuario
+    redirect_to login_path, notice: "Has cerrado sesión correctamente." # Redirigir a la página de login
   end
 
   private

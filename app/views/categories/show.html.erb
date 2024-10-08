@@ -1,10 +1,131 @@
-<p style="color: green"><%= notice %></p>
+<h1 style="text-align: center; margin-bottom: 20px;">Detalles de la Categoría</h1>
 
-<%= render @category %>
+<p style="color: green; text-align: center;"><%= flash[:notice] %></p>
 
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+<div class="category-details">
+  <%= render @category %>
 </div>
+
+<div class="action-buttons">
+  <%= link_to "Editar esta categoría", edit_category_path(@category), class: 'btn-edit' %> |
+  <%= link_to "Volver a categorías", categories_path, class: 'btn-back' %>
+
+  <%= button_to "Eliminar esta categoría", @category, method: :delete, class: 'btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar esta categoría?' } %>
+</div>
+
+<!-- Modal para mostrar el mensaje de éxito -->
+<div id="successModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <p><%= flash[:notice] %></p>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #9fc0f5; /* Color de fondo */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+  }
+
+  h1 {
+    color: #007BFF; /* Color del encabezado */
+  }
+
+  .category-details {
+    margin: 20px auto; /* Centra el contenido */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+    max-width: 600px; /* Ancho máximo */
+  }
+
+  .action-buttons {
+    text-align: center; /* Centra los botones */
+    margin-top: 20px; /* Espaciado superior */
+  }
+
+  .btn-edit, .btn-back, .btn-delete {
+    background-color: #007BFF; /* Color azul para los botones */
+    color: white;
+    padding: 10px 15px; /* Espaciado interno de los botones */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Elimina subrayado */
+    display: inline-block; /* Alinea en línea */
+    margin: 5px; /* Espacio entre botones */
+  }
+
+  .btn-edit:hover, .btn-back:hover, .btn-delete:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+  }
+
+  .btn-delete {
+    background-color: #dc3545; /* Color rojo para eliminar */
+  }
+
+  .btn-delete:hover {
+    background-color: #c82333; /* Color rojo más oscuro al hacer hover */
+  }
+
+  /* Estilos para el modal */
+  .modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Queda fijo en la pantalla */
+    z-index: 1; /* Por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Scroll si es necesario */
+    background-color: rgb(0, 0, 0); /* Color de fondo */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
+  }
+
+  .modal-content {
+    background-color: #fefefe; /* Fondo blanco */
+    margin: 15% auto; /* Espaciado vertical y centrado */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #888; /* Borde gris */
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo */
+    border-radius: 8px; /* Bordes redondeados */
+  }
+
+  .close-button {
+    color: #aaa; /* Color gris para el botón de cerrar */
+    float: right; /* A la derecha */
+    font-size: 28px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: black; /* Color negro al hacer hover o foco */
+    text-decoration: none; /* Elimina subrayado */
+    cursor: pointer; /* Manita */
+  }
+</style>
+
+<script>
+  // Mostrar el modal si hay un mensaje de éxito
+  window.onload = function() {
+    <% if flash[:notice] %>
+      document.getElementById("successModal").style.display = "block";
+    <% end %>
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
+    document.querySelector(".close-button").onclick = function() {
+      document.getElementById("successModal").style.display = "none";
+    }
+
+    // Cerrar el modal al hacer clic en cualquier parte fuera del modal
+    window.onclick = function(event) {
+      var modal = document.getElementById("successModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+</script>

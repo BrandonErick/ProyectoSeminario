@@ -1,74 +1,111 @@
-<h1 style="text-align: center; margin-bottom: 20px;">TechSolutions</h1>
-<div style="text-align: right; margin-bottom: 20px;"> <!-- Aumentar el margen inferior -->
-  <%= link_to 'Regresar', dashboard_path, class: 'btn-create' %>
+<h1 style="text-align: center; margin-bottom: 20px;" " class="background-h1">TechSolutions</h1>
+<div style="text-align: right; margin-bottom: 20px;"> 
+  <%= link_to 'Regresar', dashboard_path, class: 'btn-back' %> 
 </div>
 
 <style>
   body {
-    background-color: #9fc0f5; /* Nuevo color de fondo */
+    background-color: #9fc0f5; 
   }
 
   .table-container {
-    width: 80%; /* Ancho de la tabla */
-    margin: 20px auto; /* Centra la tabla en la página */
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
-    padding: 20px; /* Espaciado alrededor de la tabla */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-    border-radius: 8px; /* Bordes redondeados para un aspecto más suave */
+    width: 80%; 
+    margin: 20px auto; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
   }
 
   table {
-    width: 100%; /* Ancho completo dentro del contenedor */
-    border-collapse: collapse; /* Colapsa bordes para una apariencia más limpia */
+    width: 100%; 
+    border-collapse: collapse; 
   }
 
   th, td {
-    border: 2px solid #007BFF; /* Bordes azules */
-    padding: 12px; /* Espaciado interno ajustado */
-    text-align: left; /* Alineación del texto */
-    font-weight: bold; /* Texto en negrita */
+    border: 2px solid black; 
+    padding: 12px; 
+    text-align: left; 
+    font-weight: bold; 
   }
 
   th {
-    background-color: #007BFF; /* Color de fondo azul más oscuro para las cabeceras */
-    color: white; /* Color de texto en blanco */
+    background-color: #6c757d; 
+    color: white; 
+  }
+
+  td {
+    background-color: #f8f9fa; 
+    vertical-align: middle; 
   }
 
   tr:nth-child(even) {
-    background-color: #f7f9fc; /* Color de fondo más claro para filas pares */
+    background-color: #e9ecef; 
   }
 
   tr:hover {
-    background-color: #e0f7fa; /* Color al pasar el mouse */
+    background-color: #dee2e6; 
   }
 
-  .btn-create, .btn-edit, .btn-delete {
-    background-color: #007BFF; /* Color azul más oscuro */
+  .btn-create {
+    background-color: #28a745; 
     color: white;
-    padding: 5px 10px; /* Espaciado más pequeño para los botones */
+    padding: 5px 10px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; /* Elimina el subrayado en el link */
-    display: inline-block; /* Cambia a bloque en línea */
-    margin-left: 5px; /* Espacio entre botones */
+    text-decoration: none; 
+    display: inline-block; 
+    margin-left: 5px; 
   }
 
-  .btn-create:hover, .btn-edit:hover, .btn-delete:hover {
-    background-color: #0056b3; /* Color azul más oscuro al hacer hover */
+  .btn-create:hover {
+    background-color: #218838; 
+  }
+
+  .btn-back {
+    background-color: #dc3545; 
+    color: white;
+    padding: 5px 10px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block; 
+    margin-left: 5px; 
+  }
+
+  .btn-back:hover {
+    background-color: #c82333; 
+  }
+
+  .btn-edit, .btn-delete {
+    background-color: #007BFF; 
+    color: white;
+    padding: 5px 10px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block; 
+    margin-left: 5px; 
+  }
+
+  .btn-edit:hover, .btn-delete:hover {
+    background-color: #0056b3; 
   }
 
   .btn-delete {
-    background-color: #dc3545; /* Color rojo para eliminar */
+    background-color: #dc3545; 
   }
 
   .btn-delete:hover {
-    background-color: #c82333; /* Color rojo más oscuro al hacer hover */
+    background-color: #c82333; 
   }
 </style>
 
 <div class="table-container">
-  <div style="margin-bottom: 20px;"> <!-- Añadir margen inferior -->
+  <div style="margin-bottom: 20px;"> 
     <%= link_to 'Nueva Categoria', new_category_path, class: 'btn-create', style: 'font-weight: bold;' %>
   </div>
 
@@ -77,7 +114,7 @@
       <tr>
         <th>Nombre</th>
         <th>Descripcion</th>
-        <th>Acciones</th> <!-- Nueva columna para acciones -->
+        <th>Acciones</th> 
       </tr>
     </thead>
     <tbody>

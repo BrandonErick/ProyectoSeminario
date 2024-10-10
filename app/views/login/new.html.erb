@@ -1,81 +1,107 @@
-
 <style>
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Hace que el body ocupe toda la altura de la pantalla */
+    height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #e0f7fa; /* Fondo azul claro */
+    background-color: #e0f7fa;
 }
 
 .login-container {
     display: flex;
-    width: 100%; /* Ocupa el 100% del ancho */
-    height: 100%; /* Ocupa el 100% de la altura */
+    width: 100%;
+    height: 100%;
 }
 
 .left-column {
-    flex: 1; /* Ocupa la mitad del contenedor */
-    background-color: #003366; /* Azul marino */
-    color: white; /* Texto blanco */
+    flex: 1;
+    background-color: #e0f7fa;
+    background-image: url(<%= asset_path('login.jpg') %>);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center; /* Centrar horizontalmente */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.text-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 0;
+}
+
+p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .right-column {
-    flex: 1; /* Ocupa la mitad del contenedor */
-    background-color: #e0f7fa; /* Fondo azul claro */
+    flex: 1;
+    background-color: #003366;
+    color: white;
     padding: 20px;
-    display: flex; /* Usamos flexbox para centrar el contenido */
-    flex-direction: column; /* Colocamos los elementos en columna */
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-group {
-    margin-bottom: 15px; /* Espacio entre los campos del formulario */
-    width: 100%; /* Hace que el grupo del formulario ocupe todo el ancho */
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 .input-field {
-    width: 100%; /* Hace que el campo de entrada ocupe todo el ancho disponible */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 .submit-button {
-    background-color: #007bff; /* Azul profesional */
+    background-color: #007bff;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bold; /* Negrita */
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
 .submit-button:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    background-color: #0056b3;
 }
 
 .back-link {
     display: block;
     margin-top: 15px;
-    color: #007bff; /* Color del enlace */
-    text-align: center; /* Centrar el enlace */
+    color: #007bff;
+    text-align: center;
 }
 </style>
 
 <div class="login-container">
   <div class="left-column">
-    <h2>BIENVENIDO A TECHSOLUTIONS</h2>
-    <p>Por favor, ingresa tus datos para continuar.</p>
+    <div class="text-overlay">
+      <h2>BIENVENIDO A TECHSOLUTIONS</h2>
+      <p>Por favor, ingresa tus datos para continuar.</p>
+    </div>
   </div>
 
   <div class="right-column">
@@ -94,6 +120,5 @@ body {
         <%= form.submit "Iniciar Sesión", class: "submit-button" %>
       </div>
     <% end %>
-
   </div>
 </div>

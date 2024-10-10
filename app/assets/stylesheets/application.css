@@ -14,13 +14,21 @@
  *= require_self
  */
  h1 {
-    color: white; /* O el color que prefieras */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
-    padding: 10px; /* Añade algo de relleno para que el fondo envuelva bien el texto */
-    border-radius: 5px; /* Opcional: redondea los bordes */
+    color: white; 
+    padding: 10px; 
+    border-radius: 5px; 
   }
   
   body {
-    background-color: #9fc0f5;
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .background-h1 {
+    background-color: rgba(0, 0, 0, 0.5);
   }
   

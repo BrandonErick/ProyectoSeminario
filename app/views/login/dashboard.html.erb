@@ -1,4 +1,4 @@
-<h1>TechSolutions</h1>
+<h1 style="text-align: center; margin-bottom: 20px; width: 100%" " class="background-h1">TechSolutions</h1>
 
 <div class="logout-container">
   <%= button_to 'Cerrar sesión', logout_path, method: :delete, class: 'logout-button', id: 'logout-button', onclick: 'confirmLogout(event)' %>
@@ -38,10 +38,10 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Cambiado a flex-start */
+    justify-content: flex-start; 
     align-items: center;
     font-family: Arial, sans-serif;
-    min-height: 100vh; /* Asegura que el contenedor ocupe toda la pantalla */
+    min-height: 100vh; 
     margin: 0;
     padding: 0;
 }
@@ -71,9 +71,9 @@ body {
 .dashboard-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px; /* Ajusta el espacio entre los módulos */
-    max-width: 800px; /* Ajusta el ancho máximo */
-    margin-top: 60px; /* Ajusta el margen superior para moverlo hacia abajo */
+    gap: 15px; 
+    max-width: 800px; 
+    margin-top: 60px; 
 }
 
 .module {
@@ -82,21 +82,21 @@ body {
     border-radius: 8px;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Agregar transición para la sombra */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-width: 250px; /* Reducido */
-    height: 150px; /* Reducido */
+    min-width: 250px; 
+    height: 150px; 
     position: relative;
     overflow: hidden;
-    padding: 15px; /* Ajustado */
+    padding: 15px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .module:hover {
-    transform: scale(1.05); /* Un ligero aumento de tamaño */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más marcada en hover */
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 h2, p {
@@ -162,7 +162,7 @@ function confirmLogout(event) {
 }
 
 document.getElementById('confirm-logout').onclick = function() {
-    document.querySelector('form').submit(); // Envía el formulario de cerrar sesión
+    document.querySelector('form').submit(); 
 };
 
 document.getElementById('cancel-logout').onclick = function() {

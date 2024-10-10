@@ -12,27 +12,27 @@
   <% end %>
 
   <div>
-    <%= form.label :product_id, style: "display: block" %>
+    <%= form.label :fecha, style: "display: block" %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :producto_id, style: "display: block" %>
     <%= form.number_field :product_id %>
   </div>
 
   <div>
-    <%= form.label :quantity, style: "display: block" %>
+    <%= form.label :cantidad, style: "display: block" %>
     <%= form.number_field :quantity %>
   </div>
 
   <div>
-    <%= form.label :transaction_type, style: "display: block" %>
+    <%= form.label :tipo_de_transaccion, style: "display: block" %>
     <%= form.text_field :transaction_type %>
   </div>
 
   <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.datetime_field :date %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
+    <%= form.label :descripcion, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 

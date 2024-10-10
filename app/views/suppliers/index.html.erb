@@ -1,14 +1,136 @@
-<p style="color: green"><%= notice %></p>
+<h1 style="text-align: center; margin-bottom: 20px;" class="background-h1">Proveedores</h1>
 
-<h1>Suppliers</h1>
-
-<div id="suppliers">
-  <% @suppliers.each do |supplier| %>
-    <%= render supplier %>
-    <p>
-      <%= link_to "Show this supplier", supplier %>
-    </p>
-  <% end %>
+<div style="text-align: right; margin-bottom: 20px;">
+  <%= link_to 'Regresar', dashboard_path, class: 'btn-back' %>
 </div>
 
-<%= link_to "New supplier", new_supplier_path %>
+<style>
+  body {
+    background-color: #9fc0f5; /* Color de fondo */
+  }
+
+  .table-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 2px solid black;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  th {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  td {
+    background-color: #f8f9fa;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) {
+    background-color: #e9ecef;
+  }
+
+  tr:hover {
+    background-color: #dee2e6;
+  }
+
+  .btn-back {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .btn-create {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  .btn-create:hover {
+    background-color: #218838;
+  }
+
+  .btn-edit, .btn-delete {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .btn-delete {
+    background-color: #dc3545;
+  }
+
+  .btn-edit:hover, .btn-delete:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+</style>
+
+<div class="table-container">
+  <div style="margin-bottom: 20px;">
+    <%= link_to 'Nuevo Proveedor', new_supplier_path, class: 'btn-create', style: 'font-weight: bold;' %>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre del Proveedor</th>
+        <th>Información de Contacto</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= supplier.id %></td>
+          <td><%= supplier.name %></td>
+          <td><%= supplier.contact_info.present? ? supplier.contact_info : 'No disponible' %></td>
+          <td><%= supplier.address.present? ? supplier.address : 'No disponible' %></td>
+          <td>
+            <%= link_to 'Editar', edit_supplier_path(supplier), class: 'btn-edit' %>
+            <%= link_to 'Eliminar', supplier_path(supplier), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar este proveedor?' }, class: 'btn-delete' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

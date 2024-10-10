@@ -1,52 +1,102 @@
-<h1 style="text-align: center; margin-bottom: 20px;">Nueva Categoría</h1>
+<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: #343a40;">Crear Nueva Categoría</h1>
 
 <div class="form-container">
   <%= render "form", category: @category %>
 </div>
 
-<div class="action-links">
-  <%= link_to "Volver a categorías", categories_path, class: 'btn-back' %>
+<br>
+
+<div style="text-align: center;">
+  <%= link_to "Regresar a las categorías", categories_path, class: 'btn-back' %>
 </div>
 
 <style>
   body {
-    background-color: #9fc0f5; /* Color de fondo */
-    font-family: Arial, sans-serif; /* Fuente de texto */
-  }
-
-  h1 {
-    color: #007BFF; /* Color del encabezado */
-    text-align: center; /* Centrar el encabezado */
-    margin-bottom: 20px; /* Margen inferior */
+    background-color: #f4f7fa;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
   }
 
   .form-container {
-    margin: 20px auto; /* Centra el formulario */
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
-    max-width: 600px; /* Ancho máximo */
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
   }
 
-  .action-links {
-    text-align: center; /* Centra los enlaces */
-    margin-top: 20px; /* Espaciado superior */
+  .form-container:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
   }
 
+  .form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+
+  button,
   .btn-back {
-    background-color: #007BFF; /* Color azul para el botón */
+    background-color: #007BFF;
     color: white;
-    padding: 10px 15px; /* Espaciado interno del botón */
+    padding: 12px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; /* Elimina subrayado */
-    display: inline-block; /* Alinea en línea */
-    margin: 5px; /* Espacio entre botones */
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+    font-weight: bold;
+  }
+
+  button:hover,
+  .btn-back:hover {
+    background-color: #0056b3;
+  }
+
+  .form-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn-back {
+    background-color: #dc3545;
+    margin-top: 15px;
   }
 
   .btn-back:hover {
-    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+    background-color: #c82333;
   }
 </style>

@@ -1,14 +1,138 @@
-<p style="color: green"><%= notice %></p>
+<h1 style="text-align: center; margin-bottom: 20px;" class="background-h1">TechSolutions</h1>
 
-<h1>Inventory transactions</h1>
-
-<div id="inventory_transactions">
-  <% @inventory_transactions.each do |inventory_transaction| %>
-    <%= render inventory_transaction %>
-    <p>
-      <%= link_to "Show this inventory transaction", inventory_transaction %>
-    </p>
-  <% end %>
+<div style="text-align: right; margin-bottom: 20px;">
+  <%= link_to 'Regresar', dashboard_path, class: 'btn-back' %>
 </div>
 
-<%= link_to "New inventory transaction", new_inventory_transaction_path %>
+<style>
+  body {
+    background-color: #9fc0f5; 
+  }
+
+  .table-container {
+    width: 80%; 
+    margin: 20px auto; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+  }
+
+  table {
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+
+  th, td {
+    border: 2px solid black; 
+    padding: 12px; 
+    text-align: left; 
+    font-weight: bold; 
+  }
+
+  th {
+    background-color: #6c757d; 
+    color: white; 
+  }
+
+  td {
+    background-color: #f8f9fa; 
+    vertical-align: middle; 
+  }
+
+  tr:nth-child(even) {
+    background-color: #e9ecef; 
+  }
+
+  tr:hover {
+    background-color: #dee2e6; 
+  }
+
+  .btn-back {
+    background-color: #dc3545; 
+    color: white; 
+    padding: 5px 15px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 14px; 
+  }
+
+  .btn-create {
+    background-color: #28a745; 
+    color: white;
+    padding: 5px 15px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block; 
+    margin-left: 5px; 
+    font-size: 14px; 
+  }
+
+  .btn-create:hover {
+    background-color: #218838; 
+  }
+
+  .btn-edit, .btn-delete {
+    background-color: #007BFF; 
+    color: white;
+    padding: 5px 10px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block; 
+    margin-right: 10px; 
+    font-size: 12px; 
+  }
+
+  .btn-delete {
+    background-color: #dc3545; 
+  }
+
+  .btn-edit:hover, .btn-delete:hover {
+    background-color: #0056b3; 
+  }
+
+  .btn-delete:hover {
+    background-color: #c82333; 
+  }
+</style>
+
+<div class="table-container">
+  <div style="margin-bottom: 20px;">
+    <%= link_to 'Nueva Transacción', new_inventory_transaction_path, class: 'btn-create', style: 'font-weight: bold;' %>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID del Producto</th>
+        <th>Cantidad</th>
+        <th>Tipo de Transacción</th>
+        <th>Fecha</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inventory_transactions.each do |inventory_transaction| %>
+        <tr>
+          <td><%= inventory_transaction.product_id %></td>
+          <td><%= inventory_transaction.quantity %></td>
+          <td><%= inventory_transaction.transaction_type %></td>
+          <td><%= inventory_transaction.date.present? ? inventory_transaction.date.strftime("%d/%m/%Y") : 'Fecha no disponible' %></td>
+          <td><%= inventory_transaction.description %></td>
+          <td>
+            <%= link_to 'Editar', edit_inventory_transaction_path(inventory_transaction), class: 'btn-edit' %>
+            <%= link_to 'Eliminar', inventory_transaction_path(inventory_transaction), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar esta transacción?' }, class: 'btn-delete' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

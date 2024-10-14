@@ -1,10 +1,64 @@
-<h1>Editing supplier</h1>
+<h1 class="background-h1">Editar Proveedor</h1>
 
-<%= render "form", supplier: @supplier %>
+<div class="form-container">
+  <%= render "form", supplier: @supplier %>
+</div>
 
 <br>
 
-<div>
-  <%= link_to "Show this supplier", @supplier %> |
-  <%= link_to "Back to suppliers", suppliers_path %>
+<div style="text-align: center;">
+  <%= link_to "Mostrar este proveedor", @supplier, class: 'btn-back' %> |
+  <%= link_to "Regresar a los proveedores", suppliers_path, class: 'btn-back' %>
 </div>
+
+<style>
+  body {
+    background-color: #f4f7fa; /* Color de fondo suave */
+    font-family: 'Arial', sans-serif; /* Fuente general */
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-container {
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 30px auto; /* Centra el formulario en la página */
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: box-shadow 0.3s; /* Transición suave para la sombra */
+  }
+
+  .form-container:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15); /* Sombra más profunda al pasar el mouse */
+  }
+
+  .background-h1 {
+    text-align: center; /* Centra el texto del título */
+    margin-bottom: 20px; /* Espaciado inferior */
+    font-family: 'Arial', sans-serif; /* Fuente general */
+    color: white; /* Color del texto en blanco */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+
+  .btn-back {
+    background-color: #dc3545; /* Color rojo para el botón de regresar */
+    margin-top: 15px; /* Espaciado superior para separar del formulario */
+    color: white; /* Texto en blanco */
+    padding: 12px 20px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */ 
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 16px; /* Tamaño de letra */
+    text-decoration: none; /* Elimina el subrayado en el link */
+    display: inline-block; /* Cambia a bloque en línea */
+    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+    font-weight: bold; /* Negrita para el texto del botón */
+  }
+
+  .btn-back:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+  }
+</style>

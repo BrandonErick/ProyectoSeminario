@@ -1,0 +1,106 @@
+<script>
+  console.log('Archivo JS cargado');
+
+  // Crear el modal dinámicamente y agregarlo al cuerpo del documento
+  const modal = document.createElement('div');
+  modal.innerHTML = `
+    <div class="modal-overlay">
+      <div class="modal-content animate-modal">
+        <h2 class="modal-title">¡Usuario Creado con Éxito!</h2>
+        <p>Tu cuenta ha sido creada con éxito.</p>
+        <button id="accept-btn" class="submit-button">Continuar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Estilos básicos para el modal con animación y diseño grande
+  const style = document.createElement('style');
+  style.innerHTML = `
+    /* Fondo semitransparente para el overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      animation: fadeIn 1s forwards; /* Aumentar duración de la animación */
+    }
+
+    /* Diseño y tamaño del contenido del modal */
+    .modal-content {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: scale(0.9);
+      animation: slideIn 1s forwards; /* Aumentar duración de la animación */
+      width: 400px;
+    }
+
+    /* Estilo del título grande */
+    .modal-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Botón de continuar */
+    .submit-button {
+      padding: 15px 30px;
+      background-color: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+      background-color: #165ddb;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Añadir el evento de clic al botón "Continuar" para cerrar el modal y redirigir al login
+  document.getElementById('accept-btn').addEventListener('click', function() {
+    console.log('Botón "Continuar" presionado');
+    modal.style.animation = 'fadeOut 0.5s forwards';
+    setTimeout(function() {
+      window.location.href = '<%= login_path %>';
+    }, 2000); // Aumentar tiempo para redirección (2 segundos)
+  });
+
+  // Asegurarnos de que el modal se ha creado correctamente
+  console.log('Modal creado y visible');
+</script>

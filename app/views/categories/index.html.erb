@@ -1,112 +1,134 @@
-<h1 style="text-align: center; margin-bottom: 20px;" " class="background-h1">TechSolutions</h1>
+<h1 style="text-align: center; margin-bottom: 20px;" class="background-h1">Categorias</h1>
+
 <div style="text-align: right; margin-bottom: 20px;"> 
   <%= link_to 'Regresar', dashboard_path, class: 'btn-back' %> 
 </div>
 
 <style>
   body {
-    background-color: #9fc0f5; 
+    background-color: #9fc0f5;
   }
 
   .table-container {
-    width: 80%; 
-    margin: 20px auto; 
-    background-color: rgba(255, 255, 255, 0.9); 
-    padding: 20px; 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
-    border-radius: 8px; 
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
   }
 
   table {
-    width: 100%; 
-    border-collapse: collapse; 
+    width: 100%;
+    border-collapse: collapse;
   }
 
   th, td {
-    border: 2px solid black; 
-    padding: 12px; 
-    text-align: left; 
-    font-weight: bold; 
+    border: 2px solid black;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
   }
 
   th {
-    background-color: #6c757d; 
-    color: white; 
+    background-color: #6c757d;
+    color: white;
   }
 
   td {
-    background-color: #f8f9fa; 
-    vertical-align: middle; 
+    background-color: #f8f9fa;
+    vertical-align: middle;
   }
 
   tr:nth-child(even) {
-    background-color: #e9ecef; 
+    background-color: #e9ecef;
   }
 
   tr:hover {
-    background-color: #dee2e6; 
+    background-color: #dee2e6;
   }
 
   .btn-create {
-    background-color: #28a745; 
+    background-color: #28a745;
     color: white;
-    padding: 5px 10px; 
+    padding: 5px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; 
-    display: inline-block; 
-    margin-left: 5px; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
   }
 
   .btn-create:hover {
-    background-color: #218838; 
+    background-color: #218838;
   }
 
   .btn-back {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     color: white;
-    padding: 5px 10px; 
+    padding: 5px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; 
-    display: inline-block; 
-    margin-left: 5px; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
   }
 
   .btn-back:hover {
-    background-color: #c82333; 
+    background-color: #c82333;
   }
 
   .btn-edit, .btn-delete {
-    background-color: #007BFF; 
+    background-color: #007BFF;
     color: white;
-    padding: 5px 10px; 
+    padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; 
-    display: inline-block; 
-    margin-left: 5px; 
-  }
-
-  .btn-edit:hover, .btn-delete:hover {
-    background-color: #0056b3; 
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
   }
 
   .btn-delete {
-    background-color: #dc3545; 
+    background-color: #dc3545;
+  }
+
+  .btn-edit:hover, .btn-delete:hover {
+    background-color: #0056b3;
   }
 
   .btn-delete:hover {
-    background-color: #c82333; 
+    background-color: #c82333;
+  }
+
+  .btn-export {
+    background-color: #ffc107;
+    color: black;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .btn-export:hover {
+    background-color: #e0a800;
   }
 </style>
 
 <div class="table-container">
-  <div style="margin-bottom: 20px;"> 
-    <%= link_to 'Nueva Categoria', new_category_path, class: 'btn-create', style: 'font-weight: bold;' %>
+  <div style="margin-bottom: 20px;">
+    <%= link_to 'Nueva Categoria', new_category_path, class: 'btn-create' %>
+    <%= link_to export_categories_path(format: :xlsx), class: 'btn-export', style: 'font-weight: bold;' do %>
+      <i class="fas fa-file-excel"></i> Exportar a Excel
+    <% end %>
   </div>
 
   <table>
@@ -114,7 +136,7 @@
       <tr>
         <th>Nombre</th>
         <th>Descripcion</th>
-        <th>Acciones</th> 
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>

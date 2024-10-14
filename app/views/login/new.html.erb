@@ -93,6 +93,22 @@ p {
     margin-top: 15px;
     color: #007bff;
     text-align: center;
+    text-decoration: none;
+}
+
+.flash {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+}
+
+.flash-success {
+    background-color: #4caf50;
+    color: white;
 }
 </style>
 
@@ -105,6 +121,18 @@ p {
   </div>
 
   <div class="right-column">
+    <!-- Muestra los mensajes flash si existen -->
+    <% if flash[:notice] %>
+      <div class="flash flash-success">
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="flash">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <!-- Formulario de inicio de sesión -->
     <%= form_with(url: login_path, local: true) do |form| %>
       <div class="form-group">
         <%= form.label :username, "Nombre de usuario" %>
@@ -120,5 +148,8 @@ p {
         <%= form.submit "Iniciar Sesión", class: "submit-button" %>
       </div>
     <% end %>
+
+    <!-- Enlace para el registro de usuario -->
+    <%= link_to "¿No tienes cuenta? Regístrate aquí", signup_path, class: "back-link" %>
   </div>
 </div>

@@ -1,4 +1,5 @@
-<h1 style="text-align: center; margin-bottom: 20px;">Detalles de la Categoría</h1>
+<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: white;", " class="background-h1">Informacion de la categoria</h1>
+
 
 <p style="color: green; text-align: center;"><%= flash[:notice] %></p>
 
@@ -106,21 +107,3 @@
   }
 </style>
 
-<script>
-  window.onload = function() {
-    <% if flash[:notice] %>
-      document.getElementById("successModal").style.display = "block";
-    <% end %>
-
-    document.querySelector(".close-button").onclick = function() {
-      document.getElementById("successModal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      var modal = document.getElementById("successModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  }
-</script>

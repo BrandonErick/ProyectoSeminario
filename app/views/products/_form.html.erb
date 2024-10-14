@@ -1,6 +1,6 @@
-<%= form_with(model: product) do |form| %>
+<%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
-    <div style="color: red">
+    <div class="error-messages">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>
@@ -11,32 +11,92 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, "Descripción" %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
+  <div class="form-group">
+    <%= form.label :quantity, "Cantidad" %>
+    <%= form.number_field :quantity, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+  <div class="form-group">
+    <%= form.label :price, "Precio" %>
+    <%= form.text_field :price, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :sku, style: "display: block" %>
-    <%= form.text_field :sku %>
+  <div class="form-group">
+    <%= form.label :sku, "SKU" %>
+    <%= form.text_field :sku, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit "Crear Producto", class: 'btn-submit' %>
   </div>
 <% end %>
+
+<!-- Estilos -->
+<style>
+  /* Estilo de mensajes de error */
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+
+  /* Estilos generales para el formulario */
+  form {
+    max-width: 600px; /* Limitar el ancho máximo del formulario */
+    margin: 0 auto; /* Centrar el formulario */
+    padding: 20px;
+    background-color: #f9f9f9; /* Fondo claro */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  /* Estilos para los campos del formulario */
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%; /* Asegurar que los campos no se estiren más allá de su contenedor */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Incluir el padding y borde en el ancho total */
+  }
+
+  /* Estilo del botón */
+  .btn-submit {
+    background-color: #28a745; /* Color verde */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+    max-width: 200px; /* Ancho máximo del botón para evitar que se estire */
+    width: 100%; /* Ancho del botón adaptado al tamaño máximo */
+  }
+
+  .btn-submit:hover {
+    background-color: #218838; /* Verde más oscuro para el hover */
+    transform: scale(1.05); /* Efecto de agrandamiento */
+  }
+</style>

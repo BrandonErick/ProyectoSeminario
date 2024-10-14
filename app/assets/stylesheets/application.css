@@ -32,3 +32,81 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
   
+  /* Clases para los formularios */
+.form-wrapper {
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Contorno semi oscuro */
+}
+
+.form-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.form-field:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Clases para los botones */
+.btn-form-submit {
+  background-color: #28a745;
+  color: black;
+  padding: 10px 20px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-form-submit:hover {
+  background-color: #218838;
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Clases para los botones de acción */
+.btn-form-action {
+  padding: 10px 15px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin: 5px;
+  font-weight: bold;
+  color: black;
+}
+
+.btn-form-show {
+  background-color: #FFC107;
+}
+
+.btn-form-show:hover {
+  background-color: #e0a800;
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.btn-form-back {
+  background-color: #dc3545;
+}
+
+.btn-form-back:hover {
+  background-color: #c82333;
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+  

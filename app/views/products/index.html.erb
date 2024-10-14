@@ -100,11 +100,30 @@
   .btn-delete:hover {
     background-color: #c82333; /* Rojo más oscuro al hacer hover */
   }
+
+  .btn-export {
+    background-color: #ffc107; /* Color amarillo para el botón de exportar */
+    color: black;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .btn-export:hover {
+    background-color: #e0a800; /* Amarillo más oscuro al hacer hover */
+  }
 </style>
 
 <div class="table-container">
   <div style="margin-bottom: 20px;">
     <%= link_to 'Nuevo Producto', new_product_path, class: 'btn-create', style: 'font-weight: bold;' %>
+    <%= link_to products_path(format: :xlsx), class: 'btn-export', style: 'font-weight: bold;' do %>
+      <i class="fas fa-file-excel"></i> Exportar a Excel
+    <% end %>
   </div>
 
   <table>

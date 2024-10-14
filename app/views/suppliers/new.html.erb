@@ -1,4 +1,4 @@
-<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: #343a40;">Crear Nuevo Proveedor</h1>
+<h1 class="background-h1">Crear Nuevo Proveedor</h1>
 
 <div class="form-container">
   <%= render "form", supplier: @supplier %>
@@ -32,10 +32,14 @@
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15); /* Sombra más profunda al pasar el mouse */
   }
 
-  .form-container h1 {
+  .background-h1 {
     text-align: center; /* Centra el texto del título */
     margin-bottom: 20px; /* Espaciado inferior */
-    color: #007BFF; /* Color del título */
+    font-family: 'Arial', sans-serif; /* Fuente general */
+    color: white; /* Color del texto en blanco */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
   }
 
   .form-group {

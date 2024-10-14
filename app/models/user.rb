@@ -1,4 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-  # Asegúrate de que el modelo tenga el atributo 'password_digest'
+
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, length: { minimum: 6 }, confirmation: true
 end

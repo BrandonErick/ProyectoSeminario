@@ -1,9 +1,136 @@
-<h1>New user</h1>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+  }
 
-<%= render "form", user: @user %>
+  .register-container {
+    width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
 
-<br>
+  .register-container h1 {
+    margin-bottom: 30px;
+    color: #1877f2;
+    font-size: 2rem;
+    font-weight: bold;
+  }
 
-<div>
-  <%= link_to "Back to users", users_path %>
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+
+  .input-field:focus {
+    border-color: #1877f2;
+    outline: none;
+  }
+
+  .submit-button {
+    width: 100%;
+    background-color: #1877f2;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .submit-button:hover {
+    background-color: #165ddb;
+  }
+
+  .alternative-login {
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+
+  .alternative-login a {
+    color: #1877f2;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .alternative-login a:hover {
+    text-decoration: underline;
+  }
+
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+</style>
+
+<div class="register-container">
+  <h1>Registro de Usuario</h1>
+
+  <% if @user.errors.any? %>
+    <div class="error-messages">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @user, local: false, remote: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :username, "Nombre de usuario" %>
+      <%= form.text_field :username, required: true, class: "input-field" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email, "Correo Electrónico" %>
+      <%= form.email_field :email, required: true, class: "input-field" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password, "Contraseña" %>
+      <%= form.password_field :password, required: true, class: "input-field" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation, "Confirmar Contraseña" %>
+      <%= form.password_field :password_confirmation, required: true, class: "input-field" %>
+    </div>
+
+    <div>
+      <%= form.submit "Registrarse", class: "submit-button" %>
+    </div>
+  <% end %>
+
+  <div class="alternative-login">
+    ¿Ya tienes una cuenta? <a href="<%= login_path %>">Inicia sesión aquí</a>
+  </div>
 </div>

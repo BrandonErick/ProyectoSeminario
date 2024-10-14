@@ -1,0 +1,22 @@
+require 'axlsx'
+
+xlsx_package = Axlsx::Package.new
+workbook = xlsx_package.workbook
+
+workbook.add_worksheet(name: "Transactions") do |sheet|
+  # Agregamos la fila de encabezado
+  sheet.add_row ["ID", "Producto", "Cantidad", "Tipo de transacción"]
+
+  # Agregamos filas con los datos de las transacciones
+  @inventory_transactions.each do |transaction|
+    sheet.add_row [
+      transaction.id,
+      transaction.product.name,   # Producto
+      transaction.quantity,       # Cantidad
+      transaction.transaction_type # Tipo de transacción
+    ]
+  end
+end
+
+# En lugar de usar serialize, usamos to_stream para enviar el archivo al navegador
+xlsx_data = xlsx_package.to_stream.read

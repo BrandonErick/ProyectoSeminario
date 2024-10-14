@@ -1,0 +1,10 @@
+# app/views/suppliers/index.xlsx.axlsx
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Proveedores") do |sheet|
+  sheet.add_row ["ID", "Nombre", "Información de Contacto", "Dirección"] # Encabezados
+
+  @suppliers.each do |supplier|
+    sheet.add_row [supplier.id, supplier.name, supplier.contact_info, supplier.address]
+  end
+end

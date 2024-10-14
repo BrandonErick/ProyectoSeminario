@@ -1,105 +1,107 @@
-<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: #343a40;">Crear Nuevo Producto</h1>
+<h1 class="background-h1">Crear Nueva Transacción</h1>
 
 <div class="form-container">
   <%= render "form", product: @product %>
 </div>
 
-<br>
-
-<div style="text-align: center;">
+<div class="form-actions">
   <%= link_to "Regresar a los productos", products_path, class: 'btn-back' %>
 </div>
 
 <style>
   body {
-    background-color: #f4f7fa; /* Color de fondo suave */
-    font-family: 'Arial', sans-serif; /* Fuente general */
+    background-color: #f4f7fa;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
   }
 
+  .background-h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    color: white; /* Cambié el color a blanco */
+  }
+
   .form-container {
-    max-width: 600px; /* Ancho máximo del formulario */
-    margin: 30px auto; /* Centra el formulario en la página */
-    background-color: #ffffff; /* Fondo blanco para el formulario */
-    padding: 30px; /* Espaciado interno */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: box-shadow 0.3s; /* Transición suave para la sombra */
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
   }
 
   .form-container:hover {
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15); /* Sombra más profunda al pasar el mouse */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
   }
 
   .form-container h1 {
-    text-align: center; /* Centra el texto del título */
-    margin-bottom: 20px; /* Espaciado inferior */
-    color: #007BFF; /* Color del título */
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF; /* Mantener el color azul */
   }
 
   .form-group {
-    margin-bottom: 20px; /* Espaciado entre grupos de campos */
+    margin-bottom: 20px;
   }
 
   label {
-    display: block; /* Hace que las etiquetas se comporten como bloques */
-    margin-bottom: 8px; /* Espaciado inferior de las etiquetas */
-    font-weight: bold; /* Negrita para etiquetas */
-    color: #343a40; /* Color del texto */
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #343a40;
   }
 
   input[type="text"],
-  input[type="number"],
   textarea {
-    width: 100%; /* Ancho completo */
-    padding: 12px; /* Espaciado interno */
-    border: 2px solid #000; /* Bordes negros */
-    border-radius: 5px; /* Bordes redondeados */
-    box-sizing: border-box; /* Incluye padding y border en el ancho total */
-    font-size: 14px; /* Tamaño de letra */
-    transition: border-color 0.3s; /* Transición suave para el borde */
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s;
   }
 
   input[type="text"]:focus,
-  input[type="number"]:focus,
   textarea:focus {
-    border-color: #007BFF; /* Color de borde al hacer foco */
-    outline: none; /* Elimina el contorno por defecto */
+    border-color: #007BFF;
+    outline: none;
   }
 
   button,
   .btn-back {
-    background-color: #007BFF; /* Color azul para el botón de crear */
-    color: white; /* Texto en blanco */
-    padding: 12px 20px; /* Espaciado interno */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */ 
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    font-size: 16px; /* Tamaño de letra */
-    text-decoration: none; /* Elimina el subrayado en el link */
-    display: inline-block; /* Cambia a bloque en línea */
-    transition: background-color 0.3s; /* Transición suave para el color de fondo */
-    font-weight: bold; /* Negrita para el texto del botón */
+    background-color: #007BFF; /* Azul para botones */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+    font-weight: bold;
   }
 
   button:hover,
   .btn-back:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    background-color: #0056b3;
   }
 
   .form-actions {
-    text-align: center; /* Centra los botones de acción */
-    margin-top: 20px; /* Espaciado superior */
+    text-align: center;
+    margin-top: 20px;
   }
 
-  /* Estilos para el texto de regreso */
   .btn-back {
-    background-color: #dc3545; /* Color rojo para el botón de regresar */
-    margin-top: 15px; /* Espaciado superior para separar del formulario */
+    background-color: #dc3545; /* Color rojo para el botón de regreso */
+    margin-top: 15px;
   }
 
   .btn-back:hover {
-    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+    background-color: #c82333;
   }
 </style>

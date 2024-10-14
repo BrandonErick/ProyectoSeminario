@@ -22,14 +22,18 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
+  
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
+        # Inicia sesión automáticamente si lo deseas
+        session[:user_id] = @user.id
+        
+        # Manejar la respuesta HTML o JS dependiendo del formato de la solicitud
+        format.html { redirect_to login_path, notice: "Usuario creado con éxito." }
+        format.js   # Renderiza el archivo `create.js.erb` cuando la solicitud es JS (AJAX)
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js   { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,7 +42,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+        format.html { redirect_to @user, notice: "Usuario actualizado con éxito." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +56,20 @@ class UsersController < ApplicationController
     @user.destroy!
 
     respond_to do |format|
-      format.html { redirect_to users_path, status: :see_other, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_path, status: :see_other, notice: "Usuario eliminado con éxito." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :password_digest, :role)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :role)
+  end
 end

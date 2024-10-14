@@ -1,12 +1,23 @@
-<h1 style="text-align: center; margin-bottom: 20px;">Editando Categoría</h1>
+<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: white;" class="background-h1">Información de la categoría</h1>
 
 <div class="form-container">
-  <%= render "form", category: @category %>
-</div>
+  <%= form_with model: @category, local: true do |f| %>
+    
+    <div class="form-group">
+      <%= f.label :name, "Nombre", class: 'form-label' %>
+      <%= f.text_field :name, class: 'form-input', placeholder: "Ingresa el nombre de la categoría" %>
+    </div>
 
-<div class="action-links">
-  <%= link_to "Ver esta categoría", @category, class: 'btn-show' %> |
-  <%= link_to "Volver a categorías", categories_path, class: 'btn-back' %>
+    <div class="form-group">
+      <%= f.label :description, "Descripción", class: 'form-label' %>
+      <%= f.text_area :description, class: 'form-input', placeholder: "Ingresa una descripción de la categoría", rows: 5 %>
+    </div>
+
+    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+      <%= f.submit "Actualizar Categoría", class: 'btn-submit' %>
+      <%= link_to "<i class='fas fa-arrow-left' style='font-size: 24px;'></i> Volver a categorías".html_safe, categories_path, class: 'btn-back btn-red' %>
+    </div>
+  <% end %>
 </div>
 
 <div id="successModal" class="modal" style="display: none;">
@@ -33,29 +44,72 @@
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 600px;
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Contorno semi oscuro */
   }
 
-  .action-links {
-    text-align: center;
-    margin-top: 20px;
+  .form-group {
+    margin-bottom: 15px;
   }
 
-  .btn-show, .btn-back {
-    background-color: #007BFF;
-    color: white;
+  .form-label {
+    display: block; /* Asegura que las etiquetas ocupen toda la línea */
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el campo de entrada */
+    font-weight: bold; /* Etiquetas en negritas */
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none; /* Evitar que el campo de descripción sea redimensionable */
+    box-sizing: border-box; /* Evita que el campo se salga de la caja */
+  }
+
+  .form-input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
+  }
+
+  .btn-submit {
+    background-color: #28a745;
+    color: black; /* Texto en negro */
+    padding: 10px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Contorno semi oscuro */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Texto en negritas */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-right: 10px; /* Espacio entre los botones */
+  }
+
+  .btn-submit:hover {
+    background-color: #218838;
+    border-color: rgba(0, 0, 0, 0.4); /* Contorno más oscuro al pasar el mouse */
+  }
+
+  .btn-back {
     padding: 10px 15px;
-    border: none;
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Contorno semi oscuro */
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
-    margin: 5px;
+    font-weight: bold; /* Texto en negritas */
+    color: black; /* Texto en negro */
+    background-color: #dc3545; /* Rojo */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
-  .btn-show:hover, .btn-back:hover {
-    background-color: #0056b3;
+  .btn-back:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+    border-color: rgba(0, 0, 0, 0.4); /* Contorno más oscuro al pasar el mouse */
   }
 
+  /* Estilo para el modal */
   .modal {
     display: none;
     position: fixed;
@@ -65,7 +119,6 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
   }
 
@@ -93,22 +146,3 @@
     cursor: pointer;
   }
 </style>
-
-<script>
-  window.onload = function() {
-    if ("<%= flash[:notice].present? %>") {
-      document.getElementById("successModal").style.display = "block";
-    }
-
-    document.querySelector(".close-button").onclick = function() {
-      document.getElementById("successModal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      var modal = document.getElementById("successModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  }
-</script>

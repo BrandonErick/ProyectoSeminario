@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Categories") do |sheet|
+  # Agregar encabezados
+  sheet.add_row ["Nombre", "Descripción"]
+
+  # Iterar sobre las categorías para agregarlas como filas
+  @categories.each do |category|
+    sheet.add_row [category.name, category.description]
+  end
+end

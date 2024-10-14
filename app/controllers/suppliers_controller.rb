@@ -1,9 +1,18 @@
 class SuppliersController < ApplicationController
-  before_action :set_supplier, only: %i[ show edit update destroy ]
+  before_action :set_supplier, only: %i[show edit update destroy]
 
   # GET /suppliers or /suppliers.json
   def index
     @suppliers = Supplier.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json # index.json.jbuilder
+      format.xlsx do
+        response.headers['Content-Disposition'] = 'attachment; filename="proveedores.xlsx"'
+        render xlsx: 'index' # No es necesario especificar el template completo
+      end
+    end
   end
 
   # GET /suppliers/1 or /suppliers/1.json
@@ -25,7 +34,7 @@ class SuppliersController < ApplicationController
 
     respond_to do |format|
       if @supplier.save
-        format.html { redirect_to @supplier, notice: "Supplier was successfully created." }
+        format.html { redirect_to @supplier, notice: "Proveedor creado exitosamente." }
         format.json { render :show, status: :created, location: @supplier }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +47,7 @@ class SuppliersController < ApplicationController
   def update
     respond_to do |format|
       if @supplier.update(supplier_params)
-        format.html { redirect_to @supplier, notice: "Supplier was successfully updated." }
+        format.html { redirect_to @supplier, notice: "Proveedor actualizado exitosamente." }
         format.json { render :show, status: :ok, location: @supplier }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,22 +58,23 @@ class SuppliersController < ApplicationController
 
   # DELETE /suppliers/1 or /suppliers/1.json
   def destroy
-    @supplier.destroy!
+    @supplier.destroy
 
     respond_to do |format|
-      format.html { redirect_to suppliers_path, status: :see_other, notice: "Supplier was successfully destroyed." }
+      format.html { redirect_to suppliers_path, status: :see_other, notice: "Proveedor eliminado exitosamente." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_supplier
-      @supplier = Supplier.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def supplier_params
-      params.require(:supplier).permit(:name, :contact_info, :address)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_supplier
+    @supplier = Supplier.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def supplier_params
+    params.require(:supplier).permit(:name, :contact_info, :address)
+  end
 end

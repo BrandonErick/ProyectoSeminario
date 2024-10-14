@@ -1,7 +1,38 @@
 <h1 style="text-align: center; margin-bottom: 20px;" class="background-h1">Categorias</h1>
 
-<div style="text-align: right; margin-bottom: 20px;"> 
-  <%= link_to 'Regresar', dashboard_path, class: 'btn-back' %> 
+<div class="table-container">
+  <div class="buttons-container">
+    <%= link_to 'Nueva Categoria', new_category_path, class: 'btn-create' %>
+    <%= link_to export_categories_path(format: :xlsx), class: 'btn-export', style: 'font-weight: bold;' do %>
+      <i class="fas fa-file-excel"></i> Exportar a Excel
+    <% end %>
+    <%= link_to dashboard_path, class: 'btn-back' do %>
+      <i class="fas fa-arrow-left" style="font-size: 14px; margin-right: 8px;"></i>
+      <span style="font-weight: bold; color: black;">Regresar</span>
+    <% end %>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= category.description %></td>
+          <td>
+            <%= link_to 'Editar', edit_category_path(category), class: 'btn-edit' %>
+            <%= link_to 'Eliminar', category_path(category), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar esta categoría?' }, class: 'btn-delete' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <style>
@@ -48,6 +79,13 @@
     background-color: #dee2e6;
   }
 
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
   .btn-create {
     background-color: #28a745;
     color: white;
@@ -56,7 +94,6 @@
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
     font-size: 14px;
     font-weight: bold;
   }
@@ -73,12 +110,27 @@
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
     font-size: 14px;
   }
 
   .btn-back:hover {
     background-color: #c82333;
+  }
+
+  .btn-export {
+    background-color: #ffc107;
+    color: black;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .btn-export:hover {
+    background-color: #e0a800;
   }
 
   .btn-edit, .btn-delete {
@@ -89,7 +141,6 @@
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
     margin-right: 10px;
     font-size: 12px;
   }
@@ -105,51 +156,4 @@
   .btn-delete:hover {
     background-color: #c82333;
   }
-
-  .btn-export {
-    background-color: #ffc107;
-    color: black;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-  }
-
-  .btn-export:hover {
-    background-color: #e0a800;
-  }
 </style>
-
-<div class="table-container">
-  <div style="margin-bottom: 20px;">
-    <%= link_to 'Nueva Categoria', new_category_path, class: 'btn-create' %>
-    <%= link_to export_categories_path(format: :xlsx), class: 'btn-export', style: 'font-weight: bold;' do %>
-      <i class="fas fa-file-excel"></i> Exportar a Excel
-    <% end %>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @categories.each do |category| %>
-        <tr>
-          <td><%= category.name %></td>
-          <td><%= category.description %></td>
-          <td>
-            <%= link_to 'Editar', edit_category_path(category), class: 'btn-edit' %>
-            <%= link_to 'Eliminar', category_path(category), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar esta categoría?' }, class: 'btn-delete' %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>

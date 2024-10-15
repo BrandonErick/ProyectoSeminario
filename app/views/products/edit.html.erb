@@ -1,12 +1,45 @@
-<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: white;" class="background-h1">Crear producto</h1>
+<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: white;" class="background-h1">Actualizar Producto</h1>
 
 <div class="form-container">
-  <%= render "form", product: @product %>
-</div>
+  <%= form_with model: @product, local: true do |f| %>
 
-<div class="action-links">
-  <%= link_to "Ver este producto", @product, class: 'btn-show' %> |
-  <%= link_to "Volver a productos", products_path, class: 'btn-back' %>
+    <div class="form-group">
+      <%= f.label :name, "Nombre", class: 'form-label' %>
+      <%= f.text_field :name, class: 'form-input', placeholder: "Ingresa el nombre del producto" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Descripción", class: 'form-label' %>
+      <%= f.text_area :description, class: 'form-input', placeholder: "Ingresa una descripción del producto", rows: 5 %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :quantity, "Cantidad", class: 'form-label' %>
+      <%= f.number_field :quantity, class: 'form-input', placeholder: "test" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price, "Precio", class: 'form-label' %>
+      <%= f.number_field :price, class: 'form-input', placeholder: "Ingresa el precio del producto" %>
+    </div>
+
+    <div class="form-group">
+      <%# <%= f.label :category_id, "Categoría", class: 'form-label' %>
+      <%# <%= f.collection_select :category_id, Category.all, :id, :name,  prompt: "Selecciona una categoría" , class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :sku, "Cantidad", class: 'form-label' %>
+      <%= f.number_field :sku, class: 'form-input', placeholder: "sku" %>
+    </div>
+
+    <!-- Botones alineados -->
+    <div class="form-group buttons-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+      <%= f.submit "Actualizar Producto", class: 'btn-submit' %>
+      <%= link_to "<i class='fas fa-arrow-left' style='font-size: 18px;'></i> Volver a productos".html_safe, products_path, class: 'btn-back' %>
+    </div>
+
+  <% end %>
 </div>
 
 <div id="successModal" class="modal" style="display: none;">
@@ -29,66 +62,79 @@
   .form-container {
     margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    padding: 30px; /* Aumento de padding */
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 600px; /* Control del ancho máximo */
+    border: 1px solid #007BFF; /* Borde para un mejor contraste */
   }
 
-  .action-links {
-    text-align: center;
-    margin-top: 20px;
+  .form-group {
+    margin-bottom: 15px;
   }
 
-  .btn-show {
-    background-color: #FFD700; /* Color amarillo oscuro */
-    color: black; /* Texto en negro */
-    font-weight: bold; /* Texto en negritas */
-    padding: 10px 15px;
-    border: 2px solid #A89C00; /* Contorno semi oscuro */
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    margin: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none;
   }
 
-  .btn-back {
-    background-color: #FF4500; /* Color rojo */
-    color: black; /* Texto en negro */
-    font-weight: bold; /* Texto en negritas */
-    padding: 10px 15px;
-    border: 2px solid #A30000; /* Contorno semi oscuro */
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    margin: 5px;
+  .form-input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
   }
 
-  .btn-show:hover {
-    background-color: #FFC300; /* Color amarillo más claro */
-  }
-
-  .btn-back:hover {
-    background-color: #FF6347; /* Color rojo más claro */
+  .buttons-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .btn-submit {
-    background-color: #28a745; /* Color verde */
-    color: white; /* Texto en blanco */
-    font-weight: bold; /* Texto en negritas */
-    padding: 10px 15px;
-    border: 2px solid #218838; /* Contorno semi oscuro */
+    background-color: #28a745;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 20px; /* Espacio superior */
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   .btn-submit:hover {
-    background-color: #218838; /* Verde más oscuro */
+    background-color: #218838;
+    border-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-back {
+    background-color: #dc3545;
+    color: black;
+    padding: 10px 15px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background-color: #c82333;
+    border-color: rgba(0, 0, 0, 0.4);
   }
 
   .modal {
@@ -100,7 +146,6 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
   }
 

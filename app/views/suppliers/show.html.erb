@@ -1,30 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: white;" class="background-h1">Información del proveedor</h1>
 
 <div class="form-container">
-<div style="text-align: center;">
-  <%= render @supplier %>
-  <%= link_to "Editar este proveedor", edit_supplier_path(@supplier), class: 'btn-back' %> |
-  <%= link_to "Regresar a los proveedores", suppliers_path, class: 'btn-back' %>
-  
-  <%= button_to "Eliminar este proveedor", @supplier, method: :delete, class: 'btn-delete' %>
-</div>
+  <!-- Mensaje de éxito dentro del contenedor con negritas -->
+  <p style="color: green; text-align: center; font-weight: bold;"><%= flash[:notice] %></p>
+
+  <div class="supplier-details">
+    <%= render @supplier %>
+  </div>
+
+  <div class="action-buttons" style="display: flex; justify-content: space-between; margin-top: 20px;">
+    <%= link_to "Editar este proveedor", edit_supplier_path(@supplier), class: 'btn-edit' %>
+    <%= link_to "Regresar a los proveedores", suppliers_path, class: 'btn-back' %>
+    <%= button_to "Eliminar este proveedor", @supplier, method: :delete, class: 'btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar este proveedor?' } %>
+  </div>
 </div>
 
-<br>
-
+<!-- Modal para mensajes de éxito -->
+<div id="successModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <p><%= flash[:notice] %></p>
+  </div>
+</div>
 
 <style>
   body {
     background-color: #f4f7fa; /* Color de fondo suave */
     font-family: 'Arial', sans-serif; /* Fuente general */
-    margin: 0;
-    padding: 0;
   }
 
   .form-container {
-    max-width: 600px; /* Ancho máximo del formulario */
+    max-width: 800px; /* Ancho máximo del formulario ajustado */
     margin: 30px auto; /* Centra el formulario en la página */
-    background-color: #ffffff; /* Fondo blanco para el formulario */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco */
     padding: 30px; /* Espaciado interno */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -35,40 +43,84 @@
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15); /* Sombra más profunda al pasar el mouse */
   }
 
+  .action-buttons {
+    display: flex;
+    justify-content: space-between; /* Espaciado máximo para que los botones ocupen toda la fila */
+    margin-top: 20px;
+  }
+
+  /* Botones */
+  .btn-edit, .btn-back, .btn-delete {
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 150px; /* Ancho mínimo para los botones */
+    text-align: center;
+  }
+
+  .btn-edit {
+    background-color: #28a745; /* Verde para el botón de editar */
+  }
+
+  .btn-edit:hover {
+    background-color: #218838;
+  }
+
   .btn-back {
-    background-color: #007BFF; /* Color azul para el botón de editar y regresar */
-    color: white; /* Texto en blanco */
-    padding: 12px 20px; /* Espaciado interno */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */ 
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    font-size: 16px; /* Tamaño de letra */
-    text-decoration: none; /* Elimina el subrayado en el link */
-    display: inline-block; /* Cambia a bloque en línea */
-    transition: background-color 0.3s; /* Transición suave para el color de fondo */
-    font-weight: bold; /* Negrita para el texto del botón */
+    background-color: #007BFF; /* Azul para el botón de regresar */
   }
 
   .btn-back:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    background-color: #0056b3;
   }
 
   .btn-delete {
-    background-color: #dc3545; /* Color rojo para el botón de eliminar */
-    color: white; /* Texto en blanco */
-    padding: 12px 20px; /* Espaciado interno */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */ 
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    font-size: 16px; /* Tamaño de letra */
-    text-decoration: none; /* Elimina el subrayado en el link */
-    display: inline-block; /* Cambia a bloque en línea */
-    transition: background-color 0.3s; /* Transición suave para el color de fondo */
-    font-weight: bold; /* Negrita para el texto del botón */
-    margin-left: 10px; /* Espaciado a la izquierda para separar de los otros botones */
+    background-color: #dc3545; /* Rojo para el botón de eliminar */
   }
 
   .btn-delete:hover {
-    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+    background-color: #c82333;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+  }
+
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    cursor: pointer;
   }
 </style>

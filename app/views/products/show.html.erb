@@ -1,15 +1,14 @@
 <h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: white;" class="background-h1">Información del Producto</h1>
 
-<p style="color: green; text-align: center;"><%= notice %></p>
-
 <div class="product-details">
+  <p style="color: green; font-weight: bold; text-align: center; font-size: 1.2em; margin-bottom: 20px;"><%= notice %></p>
   <%= render @product %>
-</div>
-
-<div class="action-buttons">
-  <%= link_to "Editar este producto", edit_product_path(@product), class: 'btn-edit' %> |
-  <%= link_to "Volver a productos", products_path, class: 'btn-back' %> |
-  <%= button_to "Eliminar este producto", @product, method: :delete, class: 'btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar este producto?' } %>
+  
+  <div class="action-buttons">
+    <%= link_to "Editar este producto", edit_product_path(@product), class: 'btn-edit' %>
+    <%= link_to "Volver a productos", products_path, class: 'btn-back' %>
+    <%= button_to "Eliminar este producto", @product, method: :delete, class: 'btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar este producto?' } %>
+  </div>
 </div>
 
 <div id="successModal" class="modal" style="display: none;">
@@ -41,8 +40,14 @@
   }
 
   .action-buttons {
-    text-align: center;
+    display: flex; /* Utiliza Flexbox para el layout */
+    justify-content: center; /* Centra los botones horizontalmente */
     margin-top: 20px;
+  }
+
+  .action-buttons > a, 
+  .action-buttons > form {
+    margin: 0 10px; /* Espacio entre los botones */
   }
 
   .btn-edit {
@@ -54,7 +59,6 @@
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    margin: 5px;
     transition: background-color 0.3s;
   }
 
@@ -71,7 +75,6 @@
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    margin: 5px;
     transition: background-color 0.3s;
   }
 
@@ -88,7 +91,6 @@
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    margin: 5px;
     transition: background-color 0.3s;
   }
 

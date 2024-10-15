@@ -1,17 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="form-container">
-  <%= render @supplier %>
-</div>
-
-<br>
-
 <div style="text-align: center;">
+  <%= render @supplier %>
   <%= link_to "Editar este proveedor", edit_supplier_path(@supplier), class: 'btn-back' %> |
   <%= link_to "Regresar a los proveedores", suppliers_path, class: 'btn-back' %>
   
   <%= button_to "Eliminar este proveedor", @supplier, method: :delete, class: 'btn-delete' %>
 </div>
+</div>
+
+<br>
+
 
 <style>
   body {

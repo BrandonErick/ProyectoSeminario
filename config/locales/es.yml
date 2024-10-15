@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    models:
+      product: "Producto"
+    attributes:
+      product:
+        name: "Nombre"
+        description: "Descripción"
+        quantity: "Cantidad"
+        price: "Precio"
+        sku: "SKU"
+  notices:
+    created: "El producto fue creado con éxito."
+    updated: "El producto fue actualizado con éxito."
+    destroyed: "El producto fue eliminado con éxito."

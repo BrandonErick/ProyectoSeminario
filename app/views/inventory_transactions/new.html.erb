@@ -1,107 +1,136 @@
-<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: #343a40;">Crear Nueva Transacción de Inventario</h1>
+<h1 class="background-h1">Crear Nueva Transacción de Inventario</h1>
 
 <div class="form-container">
-  <%= render "form", inventory_transaction: @inventory_transaction %>
+  <%= form_with model: @inventory_transaction, local: true do |f| %>
+    
+    <div class="form-group">
+      <%= f.label :product_id, "Producto", class: 'form-label' %>
+      <%= f.select :product_id, options_from_collection_for_select(Product.all, :id, :name), { prompt: "Selecciona un Producto" }, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :quantity, "Cantidad", class: 'form-label' %>
+      <%= f.number_field :quantity, class: 'form-input', placeholder: "Ingresa la cantidad" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :transaction_type, "Tipo de transacción", class: 'form-label' %>
+      <%= f.select :transaction_type, options_for_select([
+        ["Entrada", InventoryTransaction::TRANSACTION_TYPES[:entry]], 
+        ["Salida", InventoryTransaction::TRANSACTION_TYPES[:exit]]
+      ]), {}, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date, "Fecha de Transacción", class: 'form-label' %>
+      <%= f.date_field :date, value: Date.today, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Descripción", class: 'form-label' %>
+      <%= f.text_area :description, class: 'form-input', placeholder: "Ingresa una descripción" %>
+    </div>
+
+    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+      <%= f.submit "Crear Transacción", class: 'btn-submit' %>
+      <%= link_to "<i class='fas fa-arrow-left' style='font-size: 24px;'></i> Regresar a las transacciones".html_safe, inventory_transactions_path, class: 'btn-back btn-red' %>
+    </div>
+
+  <% end %>
 </div>
 
-<br>
-
-<div style="text-align: center;">
-  <%= link_to "Regresar a las transacciones de inventario", inventory_transactions_path, class: 'btn-back' %>
-</div>
-
+<!-- Estilos -->
 <style>
   body {
-    background-color: #f4f7fa; /* Color de fondo suave */
-    font-family: 'Arial', sans-serif; /* Fuente general */
+    background-color: #f4f7fa;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
   }
 
+  .background-h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    color: white;
+  }
+
   .form-container {
-    max-width: 600px; /* Ancho máximo del formulario */
-    margin: 30px auto; /* Centra el formulario en la página */
-    background-color: #ffffff; /* Fondo blanco para el formulario */
-    padding: 30px; /* Espaciado interno */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: box-shadow 0.3s; /* Transición suave para la sombra */
-  }
-
-  .form-container:hover {
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15); /* Sombra más profunda al pasar el mouse */
-  }
-
-  .form-container h1 {
-    text-align: center; /* Centra el texto del título */
-    margin-bottom: 20px; /* Espaciado inferior */
-    color: #007BFF; /* Color del título */
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.2);
   }
 
   .form-group {
-    margin-bottom: 20px; /* Espaciado entre grupos de campos */
+    margin-bottom: 15px;
   }
 
-  label {
-    display: block; /* Hace que las etiquetas se comporten como bloques */
-    margin-bottom: 8px; /* Espaciado inferior de las etiquetas */
-    font-weight: bold; /* Negrita para etiquetas */
-    color: #343a40; /* Color del texto */
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #343a40;
   }
 
-  input[type="text"],
-  input[type="number"],
-  input[type="date"],
-  textarea {
-    width: 100%; /* Ancho completo */
-    padding: 12px; /* Espaciado interno */
-    border: 2px solid #000; /* Bordes negros */
-    border-radius: 5px; /* Bordes redondeados */
-    box-sizing: border-box; /* Incluye padding y border en el ancho total */
-    font-size: 14px; /* Tamaño de letra */
-    transition: border-color 0.3s; /* Transición suave para el borde */
+  .form-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    font-size: 16px;
   }
 
-  input[type="text"]:focus,
-  input[type="number"]:focus,
-  input[type="date"]:focus,
-  textarea:focus {
-    border-color: #007BFF; /* Color de borde al hacer foco */
-    outline: none; /* Elimina el contorno por defecto */
+  .form-input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
   }
 
-  button,
+  .btn-submit {
+    background-color: #28a745;
+    color: black !important;
+    padding: 12px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-right: 10px;
+  }
+
+  .btn-submit:hover {
+    background-color: #218838;
+    border-color: rgba(0, 0, 0, 0.4);
+  }
+
   .btn-back {
-    background-color: #007BFF; /* Color azul para el botón de crear */
-    color: white; /* Texto en blanco */
-    padding: 12px 20px; /* Espaciado interno */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */ 
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    font-size: 16px; /* Tamaño de letra */
-    text-decoration: none; /* Elimina el subrayado en el link */
-    display: inline-block; /* Cambia a bloque en línea */
-    transition: background-color 0.3s; /* Transición suave para el color de fondo */
-    font-weight: bold; /* Negrita para el texto del botón */
+    padding: 12px 20px;
+    background-color: #dc3545;
+    color: black;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
-  button:hover,
-  .btn-back:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
-  }
-
-  .form-actions {
-    text-align: center; /* Centra los botones de acción */
-    margin-top: 20px; /* Espaciado superior */
-  }
-
-  /* Estilos para el texto de regreso */
-  .btn-back {
-    background-color: #dc3545; /* Color rojo para el botón de regresar */
-    margin-top: 15px; /* Espaciado superior para separar del formulario */
+  .btn-back i {
+    margin-right: 8px;
   }
 
   .btn-back:hover {
-    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+    background-color: #c82333;
+    border-color: rgba(0, 0, 0, 0.4);
   }
 </style>

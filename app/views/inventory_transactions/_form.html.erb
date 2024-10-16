@@ -1,7 +1,7 @@
-<%= form_with(model: inventory_transaction) do |form| %>
+<%= form_with(model: inventory_transaction, local: true) do |form| %>
   <% if inventory_transaction.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(inventory_transaction.errors.count, "error") %> prohibited this inventory_transaction from being saved:</h2>
+    <div class="error-messages">
+      <h2><%= pluralize(inventory_transaction.errors.count, "error") %> prohibited this inventory transaction from being saved:</h2>
 
       <ul>
         <% inventory_transaction.errors.each do |error| %>
@@ -11,32 +11,88 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.date_field :date %>
+  <div class="form-group">
+    <%= form.label :fecha, "Fecha" %>
+    <%= form.date_field :fecha, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :producto_id, style: "display: block" %>
-    <%= form.number_field :product_id %>
+  <div class="form-group">
+    <%= form.label :producto_id, "ID del Producto" %>
+    <%= form.number_field :product_id, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :cantidad, style: "display: block" %>
-    <%= form.number_field :quantity %>
+  <div class="form-group">
+    <%= form.label :cantidad, "Cantidad" %>
+    <%= form.number_field :quantity, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :tipo_de_transaccion, style: "display: block" %>
-    <%= form.text_field :transaction_type %>
+  <div class="form-group">
+    <%= form.label :tipo_de_transaccion, "Tipo de Transacción" %>
+    <%= form.text_field :transaction_type, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :descripcion, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :descripcion, "Descripción" %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit "Guardar Transacción", class: 'btn-submit' %>
   </div>
 <% end %>
+
+<!-- Estilos -->
+<style>
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .btn-submit {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+</style>

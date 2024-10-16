@@ -58,11 +58,21 @@ class InventoryTransactionsController < ApplicationController
 
   # DELETE /inventory_transactions/1 or /inventory_transactions/1.json
   def destroy
-    @inventory_transaction.destroy!
-    
+    if @inventory_transaction.destroy
+      respond_to do |format|
+        format.html { redirect_to inventory_transactions_url, status: :see_other, notice: "La transacción fue eliminada exitosamente." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to inventory_transactions_url, alert: "No se pudo eliminar la transacción." }
+        format.json { render json: { error: "No se pudo eliminar la transacción" }, status: :unprocessable_entity }
+      end
+    end
+  rescue ActiveRecord::RecordNotDestroyed
     respond_to do |format|
-      format.html { redirect_to inventory_transactions_url, status: :see_other, notice: "La transacción fue eliminada exitosamente." }
-      format.json { head :no_content }
+      format.html { redirect_to inventory_transactions_url, alert: "Error al intentar eliminar la transacción." }
+      format.json { render json: { error: "Error al intentar eliminar la transacción" }, status: :unprocessable_entity }
     end
   end
 

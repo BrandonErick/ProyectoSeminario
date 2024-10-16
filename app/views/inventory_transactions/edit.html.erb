@@ -1,10 +1,14 @@
-<h1>Editing inventory transaction</h1>
+<h1 style="text-align: center; margin-bottom: 20px; font-family: 'Arial', sans-serif; color: #333;">
+  Editar Transacción de Inventario
+</h1>
 
-<%= render "form", inventory_transaction: @inventory_transaction %>
+<div class="form-container" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+  <%= render "form", inventory_transaction: @inventory_transaction %>
+</div>
 
 <br>
 
-<div>
-  <%= link_to "Show this inventory transaction", @inventory_transaction %> |
-  <%= link_to "Back to inventory transactions", inventory_transactions_path %>
+<div style="text-align: center; margin-top: 20px;">
+  <%= link_to "Mostrar esta transacción de inventario", @inventory_transaction, class: 'btn btn-info' %> |
+  <%= link_to "Volver a transacciones de inventario", inventory_transactions_path, class: 'btn btn-secondary' %>
 </div>

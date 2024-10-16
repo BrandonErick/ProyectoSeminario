@@ -1,129 +1,16 @@
 <h1 style="text-align: center; margin-bottom: 20px;" class="background-h1">Transacciones de Inventario</h1>
 
-<div style="text-align: right; margin-bottom: 20px;">
-  <%= link_to 'Regresar', dashboard_path, class: 'btn-back' %>
-</div>
-
-<style>
-  body {
-    background-color: #9fc0f5; /* Color de fondo */
-  }
-
-  .table-container {
-    width: 80%; /* Ancho de la tabla */
-    margin: 20px auto; /* Centra la tabla en la página */
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
-    padding: 20px; /* Espaciado alrededor de la tabla */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-    border-radius: 8px; /* Bordes redondeados */
-  }
-
-  table {
-    width: 100%; /* Ancho completo dentro del contenedor */
-    border-collapse: collapse; /* Colapsa bordes */
-  }
-
-  th, td {
-    border: 2px solid black; /* Bordes negros */
-    padding: 12px; /* Espaciado interno ajustado */
-    text-align: left; /* Alineación del texto */
-    font-weight: bold; /* Texto en negrita */
-  }
-
-  th {
-    background-color: #6c757d; /* Color de fondo para las cabeceras */
-    color: white; /* Color de texto en blanco */
-  }
-
-  td {
-    background-color: #f8f9fa; /* Fondo más claro para las celdas */
-    vertical-align: middle; /* Centra el contenido verticalmente */
-  }
-
-  tr:nth-child(even) {
-    background-color: #e9ecef; /* Color de fondo más claro para filas pares */
-  }
-
-  tr:hover {
-    background-color: #dee2e6; /* Color al pasar el mouse */
-  }
-
-  .btn-back {
-    background-color: #dc3545; /* Color rojo para el botón de regresar */
-    color: white; /* Texto en blanco */
-    padding: 5px 15px; /* Espaciado en el botón */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    text-decoration: none; /* Elimina el subrayado en el link */
-    display: inline-block; /* Cambia a bloque en línea */
-    font-size: 14px; /* Tamaño de letra */
-  }
-
-  .btn-create {
-    background-color: #28a745; /* Verde para crear */
-    color: white;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-  }
-
-  .btn-create:hover {
-    background-color: #218838; /* Verde más oscuro al hacer hover */
-  }
-
-  .btn-edit, .btn-delete {
-    background-color: #007BFF; /* Azul para editar */
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 12px;
-  }
-
-  .btn-delete {
-    background-color: #dc3545; /* Rojo para eliminar */
-  }
-
-  .btn-edit:hover, .btn-delete:hover {
-    background-color: #0056b3; /* Azul más oscuro al hacer hover */
-  }
-
-  .btn-delete:hover {
-    background-color: #c82333; /* Rojo más oscuro al hacer hover */
-  }
-
-  .btn-export {
-    background-color: #ffc107; /* Color amarillo para el botón de exportar */
-    color: black;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin-left: 10px; /* Espaciado a la izquierda del botón */
-  }
-
-  .btn-export:hover {
-    background-color: #e0a800; /* Amarillo más oscuro al hacer hover */
-  }
-</style>
-
 <div class="table-container">
-  <div style="margin-bottom: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <%= link_to 'Nueva Transacción', new_inventory_transaction_path, class: 'btn-create', style: 'font-weight: bold;' %>
+
     <%= link_to inventory_transactions_path(format: :xlsx), class: 'btn-export', style: 'font-weight: bold;' do %>
       <i class="fas fa-file-excel"></i> Exportar a Excel
+    <% end %>
+
+    <%= link_to dashboard_path, class: 'btn-back' do %>
+      <i class="fas fa-arrow-left" style="font-size: 14px; margin-right: 8px;"></i>
+      <span style="font-weight: bold;">Regresar</span>
     <% end %>
   </div>
 
@@ -155,3 +42,121 @@
     </tbody>
   </table>
 </div>
+
+<style>
+  body {
+    background-color: #9fc0f5;
+  }
+
+  .table-container {
+    width: 80%;
+    margin: 50px auto; /* Aumenté el margen superior para bajar la tabla */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 2px solid black;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  th {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  td {
+    background-color: #f8f9fa;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) {
+    background-color: #e9ecef;
+  }
+
+  tr:hover {
+    background-color: #dee2e6;
+  }
+
+  .btn-back {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .btn-create {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .btn-create:hover {
+    background-color: #218838;
+  }
+
+  .btn-edit, .btn-delete {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: bold; /* Texto en negrita */
+  }
+
+  .btn-delete {
+    background-color: #dc3545;
+  }
+
+  .btn-edit:hover, .btn-delete:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+
+  .btn-export {
+    background-color: #ffc107;
+    color: black;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold; /* Texto en negrita */
+  }
+
+  .btn-export:hover {
+    background-color: #e0a800;
+  }
+</style>

@@ -26,6 +26,8 @@ class InventoryTransactionsController < ApplicationController
 
   # GET /inventory_transactions/1/edit
   def edit
+    @inventory_transaction = InventoryTransaction.find(params[:id])
+    puts @inventory_transaction.inspect # Agrega esta línea para ver el objeto en la consola
   end
 
   # POST /inventory_transactions or /inventory_transactions.json
